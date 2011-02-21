@@ -256,12 +256,11 @@ public class ValidationConstraintsService {
 
     public ClassConstraintInformation getValidationConstraints(Class clazz) {
         Map<String, Set<ConstraintInstance>> propertyToConstraintInstancesMap = classToPropertyToConstraintInstancesMap.get(clazz);
-        Map<String, ConstraintDefinition> compoundConstraintDefinitionMap;
+        Map<String, ConstraintDefinition> compoundConstraintDefinitionMap = classTocompoundConstraintDefinitionMap.get(clazz);
 
         if(propertyToConstraintInstancesMap == null) {
-            compoundConstraintDefinitionMap = new LinkedHashMap<String, ConstraintDefinition>();
-
             propertyToConstraintInstancesMap = new LinkedHashMap<String, Set<ConstraintInstance>>();
+            compoundConstraintDefinitionMap = new LinkedHashMap<String, ConstraintDefinition>();
 
             _getConstraints(clazz, "", propertyToConstraintInstancesMap, compoundConstraintDefinitionMap);
             getClassLevelConstraints(clazz, propertyToConstraintInstancesMap, compoundConstraintDefinitionMap);
@@ -269,8 +268,8 @@ public class ValidationConstraintsService {
             classToPropertyToConstraintInstancesMap.put(clazz, propertyToConstraintInstancesMap);
         }
 
-        else {
-            compoundConstraintDefinitionMap = classTocompoundConstraintDefinitionMap.get(clazz);
+        if(compoundConstraintDefinitionMap == null) {
+            compoundConstraintDefinitionMap = new LinkedHashMap<String, ConstraintDefinition>();
         }
 
         return new ClassConstraintInformation(
