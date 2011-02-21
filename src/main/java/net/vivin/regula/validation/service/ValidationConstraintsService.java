@@ -7,6 +7,7 @@ import net.vivin.regula.validation.constraint.ConstraintParameter;
 import org.apache.commons.lang.StringUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.type.ClassMetadata;
 import org.springframework.stereotype.Service;
 
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -28,6 +29,7 @@ public class ValidationConstraintsService {
     private LocalValidatorFactoryBean validator;
 
     private Map<Class, Map<String, Set<ConstraintInstance>>> classToPropertyToConstraintInstancesMap = new LinkedHashMap<Class, Map<String, Set<ConstraintInstance>>>();
+    private Map<Class, Map<String, ConstraintDefinition>> classTocompoundConstraintDefinitionMap = new HashMap<Class, Map<String, ConstraintDefinition>>();
 
     private String getFriendlyNameForProperty(String propertyName) {
         String[] parts = StringUtils.splitByCharacterTypeCamelCase(propertyName);
@@ -254,17 +256,22 @@ public class ValidationConstraintsService {
 
     public ClassConstraintInformation getValidationConstraints(Class clazz) {
         Map<String, Set<ConstraintInstance>> propertyToConstraintInstancesMap = classToPropertyToConstraintInstancesMap.get(clazz);
+        Map<String, ConstraintDefinition> compoundConstraintDefinitionMap;
 
-        //TODO PUT THIS BACK IN!!!
-        //if(propertyToConstraintInstancesMap == null) {
+        if(propertyToConstraintInstancesMap == null) {
+            compoundConstraintDefinitionMap = new LinkedHashMap<String, ConstraintDefinition>();
+
             propertyToConstraintInstancesMap = new LinkedHashMap<String, Set<ConstraintInstance>>();
-            Map<String, ConstraintDefinition> compoundConstraintDefinitionMap = new HashMap<String, ConstraintDefinition>();
 
             _getConstraints(clazz, "", propertyToConstraintInstancesMap, compoundConstraintDefinitionMap);
             getClassLevelConstraints(clazz, propertyToConstraintInstancesMap, compoundConstraintDefinitionMap);
 
             classToPropertyToConstraintInstancesMap.put(clazz, propertyToConstraintInstancesMap);
-        //}
+        }
+
+        else {
+            compoundConstraintDefinitionMap = classTocompoundConstraintDefinitionMap.get(clazz);
+        }
 
         return new ClassConstraintInformation(
                 new HashMap<String, Set<ConstraintInstance>>(propertyToConstraintInstancesMap),
