@@ -29,7 +29,7 @@ public class ValidationConstraintsService {
     private LocalValidatorFactoryBean validator;
 
     private Map<Class, Map<String, Set<ConstraintInstance>>> classToPropertyToConstraintInstancesMap = new LinkedHashMap<Class, Map<String, Set<ConstraintInstance>>>();
-    private Map<Class, Map<String, ConstraintDefinition>> classTocompoundConstraintDefinitionMap = new HashMap<Class, Map<String, ConstraintDefinition>>();
+    private Map<Class, Map<String, ConstraintDefinition>> classToCompoundConstraintDefinitionMap = new HashMap<Class, Map<String, ConstraintDefinition>>();
 
     private String getFriendlyNameForProperty(String propertyName) {
         String[] parts = StringUtils.splitByCharacterTypeCamelCase(propertyName);
@@ -256,7 +256,7 @@ public class ValidationConstraintsService {
 
     public ClassConstraintInformation getValidationConstraints(Class clazz) {
         Map<String, Set<ConstraintInstance>> propertyToConstraintInstancesMap = classToPropertyToConstraintInstancesMap.get(clazz);
-        Map<String, ConstraintDefinition> compoundConstraintDefinitionMap = classTocompoundConstraintDefinitionMap.get(clazz);
+        Map<String, ConstraintDefinition> compoundConstraintDefinitionMap = classToCompoundConstraintDefinitionMap.get(clazz);
 
         if(propertyToConstraintInstancesMap == null) {
             propertyToConstraintInstancesMap = new LinkedHashMap<String, Set<ConstraintInstance>>();
