@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>regula-spring</short-name>
+    <dispay-name>Regula-Spring Taglib</dispay-name>
+    <uri>http://regula-spring</uri>
+    <jsp-version>2.0</jsp-version>
+
+    <tag-file>
+        <name>generate-validation</name>
+        <path>/META-INF/tags/generate-validation.tag</path>
+    </tag-file>
+
+    <function>
+        <name>matches</name>
+        <function-class>net.vivin.regula.validation.util.TagStringUtils</function-class>
+        <function-signature>boolean matches(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+    </function>
+
+    <function>
+        <name>replaceUsingRegex</name>
+        <function-class>net.vivin.regula.validation.util.TagStringUtils</function-class>
+        <function-signature>java.lang.String replaceUsingRegex(java.lang.String, java.lang.String, java.lang.String,
+            java.lang.String)
+        </function-signature>
+    </function>
+</taglib>

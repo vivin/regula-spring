@@ -4,21 +4,32 @@
 
     <groupId>net.vivin</groupId>
     <artifactId>regula-spring</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-
+    <packaging>jar</packaging>
+    <version>1.0</version>
     <name>Regula and Spring Integration</name>
-
-    <description>A project for integrating Regula and Spring</description>
+    <description>An integration between Regula (an annotation-based client-side validation framework) and Spring</description>
+    <url>https://github.com/vivin/regula-spring</url>
+    <inceptionYear>2011</inceptionYear>
+    <developers>
+        <developer>
+            <name>Vivin Paliath</name>
+            <url>http://vivin.net</url>
+            <roles>
+                <role>Original author</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>1.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
-                    <path>/</path>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -26,7 +37,7 @@
 
     <dependencies>
 
-        <dependency>
+        <dependency> 
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
@@ -36,6 +47,13 @@
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency> 
+
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>el-api</artifactId>
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
