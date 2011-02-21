@@ -21,13 +21,6 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by IntelliJ IDEA.
- * User: vivin
- * Date: Jul 20, 2010
- * Time: 2:48:37 PM
- */
-
 @Service
 public class ValidationConstraintsService {
 

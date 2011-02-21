@@ -9,7 +9,7 @@
     <name>Regula and Spring Integration</name>
     <description>An integration between Regula (an annotation-based client-side validation framework) and Spring</description>
     <url>https://github.com/vivin/regula-spring</url>
-    <inceptionYear>2011</inceptionYear>
+    <inceptionYear>2010</inceptionYear>
     <developers>
         <developer>
             <name>Vivin Paliath</name>
