@@ -73,7 +73,6 @@ public class ValidationConstraintsService {
                 propertyName = prefix + "." + propertyDescriptor.getPropertyName();
             }
 
-
             String friendlyName = getFriendlyNameForProperty(propertyName);
 
             if(propertyDescriptor.isCascaded()) {
@@ -94,7 +93,6 @@ public class ValidationConstraintsService {
                 for(ConstraintDescriptor<? extends Annotation> constraintDescriptor : propertyDescriptor.getConstraintDescriptors()) {
 
                     ConstraintInstance validationConstraintInstance = createConstraintFromDescriptor(constraintDescriptor);
-
 
                     if(constraintDescriptor.getComposingConstraints().size() > 0) {
                         handleComposingConstraints(validationConstraintInstance, constraintDescriptor, compoundConstraintDefinitionMap);
@@ -266,6 +264,7 @@ public class ValidationConstraintsService {
             getClassLevelConstraints(clazz, propertyToConstraintInstancesMap, compoundConstraintDefinitionMap);
 
             classToPropertyToConstraintInstancesMap.put(clazz, propertyToConstraintInstancesMap);
+            classToCompoundConstraintDefinitionMap.put(clazz, compoundConstraintDefinitionMap);
         }
 
         if(compoundConstraintDefinitionMap == null) {
